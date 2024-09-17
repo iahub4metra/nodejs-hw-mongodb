@@ -13,7 +13,7 @@ export const getContactsController = async (reg, res) => {
 
 export const getContactByIdController = async (reg, res) => {
     const { contactId } = reg.params;
-    const contact = await getContactById()
+    const contact = await getContactById(contactId)
 
     if (!contact) {
         throw createHttpError(404, "Contact not found")
