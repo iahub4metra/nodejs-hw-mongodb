@@ -14,7 +14,15 @@ const PORT = Number(process.env.PORT)
 export const setupServer = () => {
     const app = express()
 
-    app.use(express.json());
+    //app.use(express.json());
+
+    app.use((req, res, next) => {
+        if (req.is("application/json")) {
+            express.json()(req, res, next);
+        } else {
+            next()
+        }
+    })
     app.use(cors());
     app.use(cookieParser())
 

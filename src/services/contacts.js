@@ -39,12 +39,8 @@ export const createContact = async (payload) => {
     return contact;
 }
 
-export const patchContact = async (contactId, req, options = {}) => {
-    const rawResult = await ContactsCollection.findOneAndUpdate({ _id: contactId, userId: req.user._id }, req.body, {
-        new: true,
-        includeResultMetadata: true,
-        ...options,
-    });
+export const patchContact = async (contactData, data, options = {}) => {
+    const rawResult = await ContactsCollection.findOneAndUpdate(contactData, data, {new: true, includeResultMetadata: true, ...options,});
 
     if (!rawResult || !rawResult.value) return null;
 
