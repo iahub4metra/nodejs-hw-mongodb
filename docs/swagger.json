@@ -28,7 +28,7 @@
     }
   ],
   "paths": {
-    "/auth": {
+    "/auth/register": {
       "post": {
         "tags": [
           "Auth"
@@ -476,6 +476,9 @@
           },
           "401": {
             "$ref": "#/components/responses/401"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
           }
         }
       },
