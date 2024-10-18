@@ -1,0 +1,72 @@
+tags:
+  - Auth
+summary: Register an new user
+description: 'Register an new user'
+operationId: registerUser
+security: []
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - name
+          - email
+          - password
+        properties:
+          name:
+            type: string
+            example: 'John Doe'
+          email:
+            type: string
+            example: 'johndoe@gmail.com'
+          password:
+            type: string
+            example: 'examplepwd'
+responses:
+  '201':
+    description: 'Registered an user'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: 'Successfully registered an user'
+            data:
+              $ref: ../../components/schemas/user.yaml
+  '409':
+    description: 'Conflict error'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 409
+            message:
+              type: string
+              example: 'Conflict error'
+            data:
+              type: object
+              required:
+                - message
+              properties:
+                message:
+                  type: string
+                  example: 'Email in use'
+  '400':
+    description: 'Bad request'
